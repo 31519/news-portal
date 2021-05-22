@@ -9,6 +9,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from advertise.models import Advertise
 from datetime import datetime
+from django.contrib import messages
 # Create your views here.
 def register(request):
     if request.method == "POST":
@@ -37,6 +38,8 @@ def register(request):
             profile.user_id = user.id
             profile.images = 'default/default-user.jpg'
             profile.save()
+
+            messages.success (request, f"your account {user.username} has been create successfully")
 
 
             return redirect('login')
